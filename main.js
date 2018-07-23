@@ -31,8 +31,8 @@ var fs = require('fs');
 //   }
 // }).listen(8080);
 
-http.createServer(function (req, res){
-  getTitles(res)
+const server = http.createServer(function (req, res){
+  getTitles(res);
 }).listen(8080);
 
 function getTitles(res){
@@ -43,10 +43,10 @@ function getTitles(res){
     else{
       getTemplate(JSON.parse(data.toString()), res);
     }
-  })
-};
+  });
+}
 
-function getTemplate(res){
+function getTemplate(titles, res){
   fs.readFile('./index.html', function (err, data){
     if (err){
       logError(err, res);

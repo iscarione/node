@@ -7,15 +7,13 @@ const server = http.createServer(function (req, res){
   } else {
     res.end("No such Page!");
   }
-
 }).listen(8080);
 
 function getTitles(res){
   fs.readFile('./list.json', function(err, data) {
     if (err) {
       logError(err, res);
-    }
-    else{
+    } else {
       getTemplate(JSON.parse(data.toString()), res);
     }
   });
@@ -23,13 +21,12 @@ function getTitles(res){
 
 function getTemplate(titles, res){
   fs.readFile('./index.html', function (err, data){
-    if (err){
+    if (err) {
       logError(err, res);
-    } else{
+    } else {
       formatHTML(titles, data.toString(), res);
     }
   });
-
 }
 
 function formatHTML(titles, tmpl, res){
